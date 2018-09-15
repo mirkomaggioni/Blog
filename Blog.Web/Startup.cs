@@ -25,7 +25,10 @@ namespace Blog.Web
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddSingleton<BlogContextFactory>();
+			var optionsBuilder = new DbContextOptionsBuilder<BlogContext>();
+			optionsBuilder.UseSqlServer(Configuration.GetConnectionString("BlogContext"));
+
+			services.AddSingleton(_ => new BlogContextFactory(optionsBuilder.Options));
 			services.AddSingleton<CategoryService>();
 			services.AddSingleton<PostCategoryService>();
 			services.AddSingleton<PostService>();
