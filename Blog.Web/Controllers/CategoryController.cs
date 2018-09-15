@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace Blog.Web.Controllers
 {
     [Produces("application/json")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrator")]
     [Route("api/[controller]")]
     public class CategoryController : Controller
     {

@@ -8,7 +8,6 @@ namespace Blog.Web.Controllers
 	{
 		public IActionResult Index()
 		{
-			var users = User.IsInRole("Admin");
 			return View();
 		}
 

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Blog.Web.Controllers
 {
     [Produces("application/json")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrator")]
     [Route("api/[controller]")]
     public class TagController : Controller
     {

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Blog.Web.Controllers
 {
     [Produces("application/json")]
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrator")]
     [Route("api/[controller]")]
     public class PostController : Controller
     {
@@ -18,14 +18,22 @@ namespace Blog.Web.Controllers
             _postService = postService;
         }
 
-        [AllowAnonymous]
-        [HttpGet]
-        public IActionResult Get(int offset)
-        {
-            var result = _postService.GetPosts(offset, true);
+		[HttpGet]
+		public IActionResult GetAdmin(int offset, bool published)
+		{
+			var result = _postService.GetPosts(offset, published);
 
-            return Ok(result);
-        }
+			return Ok(result);
+		}
+
+		//[AllowAnonymous]
+  //      [HttpGet]
+  //      public IActionResult Get(int offset)
+  //      {
+  //          var result = _postService.GetPosts(offset, true);
+
+  //          return Ok(result);
+  //      }
 
         [HttpPost]
         public async Task<IActionResult> Post(Post post)
