@@ -18,24 +18,16 @@ namespace Blog.Web.Controllers
             _postService = postService;
         }
 
+		[AllowAnonymous]
 		[HttpGet]
-		public IActionResult GetAdmin(int offset, bool published)
+		public IActionResult Get(int offset)
 		{
-			var result = _postService.GetPosts(offset, published);
+			var result = _postService.GetPosts(offset, true);
 
 			return Ok(result);
 		}
 
-		//[AllowAnonymous]
-  //      [HttpGet]
-  //      public IActionResult Get(int offset)
-  //      {
-  //          var result = _postService.GetPosts(offset, true);
-
-  //          return Ok(result);
-  //      }
-
-        [HttpPost]
+		[HttpPost]
         public async Task<IActionResult> Post(Post post)
         {
             var result = await _postService.AddPost(post);

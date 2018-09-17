@@ -1,0 +1,25 @@
+﻿@using Blog.Core.Models
+@model List<Post>
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutAdmin";
+}
+
+<div class="container">
+  @foreach (var post in Model) {
+  <div class="row">
+    <div class="col">
+      @post.Title
+    </div>
+    <div class="col">
+      
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+  }
+</div>
+
+
+
