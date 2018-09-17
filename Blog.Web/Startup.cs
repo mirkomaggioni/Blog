@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Blog.Core.Models;
 using Blog.Core.Services;
 using Blog.Core.Services.Common;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Blog.Web
 {
@@ -85,6 +87,15 @@ namespace Blog.Web
 			}
 
 			app.UseHttpsRedirection();
+
+			app.UseFileServer(new FileServerOptions()
+			{
+				FileProvider = new PhysicalFileProvider(
+				Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
+				RequestPath = new PathString("/node_modules"),
+				EnableDirectoryBrowsing = true
+			});
+
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
 
